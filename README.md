@@ -2,6 +2,20 @@
 
 A [native plugin for Trigger.io](https://trigger.io/docs/current/api/native_plugins/index.html) to get information on the device / OS version.
 
+The plugin originated from the use case to include device/OS information in support emails that users might send:
+
+```
+Hi,
+The app always crashes when pressing the funny red button.
+Any idea?
+
+----------
+App version: 1.6.1
+Device OS: Android 4.2.2
+Device name: Nexus 7
+```
+
+
 ## Usage
 
 #### `getVersionString`: Get the OS version (e.g. '4.2.2') as a string. (`iOS`, `Android`)
@@ -18,25 +32,29 @@ function(error) {
 
 #### `getDeviceName`: Get the model name (e.g. 'Nexus 7') as a string. (`Android`)
 ```javascript
-window.forge.internal.call('version.getDeviceName', {}, 
-function(result) {
-   console.log('Device name: ' + result);
-},
-function(error) {
-   // handle errors
-});
+if (window.forge.is.android()) {
+   window.forge.internal.call('version.getDeviceName', {}, 
+   function(result) {
+      console.log('Device name: ' + result);
+   },
+   function(error) {
+      // handle errors
+   });
+}
 ```
 ===
 
 #### `getAPILevel`: Get the [Android API level](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels) (e.g. 15) as an integer. (`Android`)
 ```javascript
-window.forge.internal.call('version.getAPILevel', {}, 
-function(result) {
-   console.log('API level: ' + result);
-},
-function(error) {
-   // handle errors
-});
+if (window.forge.is.android()) {
+   window.forge.internal.call('version.getAPILevel', {}, 
+   function(result) {
+      console.log('API level: ' + result);
+   },
+   function(error) {
+      // handle errors
+   });
+}
 ```
 
 ## Compatibility
