@@ -1,9 +1,49 @@
-trigger.io-version
-==================
+# trigger.io-version
 
-Plugin for Trigger.io to get information on the device / OS version
+A [native plugin for Trigger.io](https://trigger.io/docs/current/api/native_plugins/index.html) to get information on the device / OS version.
 
-###License (BSD 2-part)
+## Usage
+
+#### `getVersionString`: Get the OS version (e.g. '4.2.2') as a string. (`iOS`, `Android`)
+```javascript
+window.forge.internal.call('version.getVersionString', {}, 
+function(result) {
+   console.log('Device OS: ' + result);
+},
+function(error) {
+   // handle errors
+});
+```
+===
+
+#### `getDeviceName`: Get the model name (e.g. 'Nexus 7') as a string. (`Android`)
+```javascript
+window.forge.internal.call('version.getDeviceName', {}, 
+function(result) {
+   console.log('Device name: ' + result);
+},
+function(error) {
+   // handle errors
+});
+```
+===
+
+#### `getAPILevel`: Get the [Android API level](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels) (e.g. 15) as an integer. (`Android`)
+```javascript
+window.forge.internal.call('version.getAPILevel', {}, 
+function(result) {
+   console.log('API level: ' + result);
+},
+function(error) {
+   // handle errors
+});
+```
+
+## Compatibility
+
+Each method is available to all versions of the supported OS (see above) that can be used with Trigger.io.
+
+## License (BSD 2-part)
 
 Copyright (c) 2013, Hojoki GmbH. 
 All rights reserved.
